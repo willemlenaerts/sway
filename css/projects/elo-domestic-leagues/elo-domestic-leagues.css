@@ -1,0 +1,135 @@
+ #jupiler-pro-league-ranking-table {
+    max-height: 100% !important;
+}
+
+.vertical-align {
+    display: flex;
+    align-items: center;
+}
+
+/*Vertical align text in Bootstrap Table*/
+.table > tbody > tr > td {
+     vertical-align: middle;
+}
+
+/*.dd-selected {*/
+/*        text-align: center !important;*/
+/*}*/
+
+/*Set container to 100% for this project*/
+@media (max-width: 768px) {
+    .ranking-table {
+     font-size:12px;
+    }
+    .ranking-table-small {
+        display:none !important;
+    
+    }
+    .team-name-small {
+        display:none !important;
+    }
+    .border-small {
+       border-right:0px #ddd solid !important;
+    }
+    .dd-selected-text {
+        font-size: 12px !important;
+    }
+    .dd-option-text {
+        font-size: 12px !important;
+    }
+}
+
+@media (max-width: 992px) {
+    .ranking-table {
+     font-size:12px;
+    }
+    .ranking-table-small {
+        display:none !important;
+    }
+    .team-name-small {
+    }
+    .border-small {
+       border-right:0px #ddd solid !important;
+    }
+    .dd-selected-text {
+        font-size: 12px !important;
+    }
+    .dd-option-text {
+        font-size: 12px !important;
+    }
+}
+/*@media (min-width: 768px) {*/
+/*    .ranking-table {*/
+/*     font-size:12px;*/
+/*    }*/
+/*    .ranking-table-small {*/
+/*        display:none !important;*/
+/*    }*/
+/*}*/
+@media (max-width: 1199px) {
+    .ranking-table {
+     font-size:15px;
+    }
+    .ranking-table-small {
+        display:none !important;
+    }
+    .team-name-small {
+    }
+    .dd-selected-text {
+        font-size: 15px !important;
+    }
+    .dd-option-text {
+        font-size: 15px !important;
+    }
+    .border-small {
+       border-right:0px #ddd solid !important;
+    }
+
+}
+@media (min-width: 1200px) {
+
+    .ranking-table {
+     font-size:18px;
+    }
+    .ranking-table-small {
+    }
+    .team-name-small {
+    }
+    .dd-selected-text {
+        font-size: 16px !important;
+    }
+    .dd-option-text {
+        font-size: 16px !important;
+    }
+}
+
+.games-table {
+ font-size:18px;
+}
+
+.games-table-small {
+ font-size:12px;
+}
+
+/*.ranking-elo {*/
+/* opacity:0.5;*/
+/*}*/
+
+/*.ranking-voorspelling {*/
+/* opacity:0.5;*/
+/*}*/
+
+/*.ranking-klassiek {*/
+/* opacity:0.5;*/
+/*}*/
+
+/*Verander kleur header bij sort*/
+.headerSortUp {
+ background-color: rgb(0,0,0) !important;
+ color: rgb(255,255,255);
+}
+
+.headerSortDown {
+ background-color: rgb(0,0,0) !important;
+ color: rgb(255,255,255);
+}

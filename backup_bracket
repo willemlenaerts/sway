@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Interactive Stories with Data">
+    
+    <title>Uefa Leagues Bracket</title>
+    
+    <link rel="canonical" href="http://sway-blog.be/uefa-leagues-bracket">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    
+    <!-- Project Navbar CSS -->
+    <link rel="stylesheet" href="/css/project-navbar.css">
+    
+    <!-- Custom CSS -->
+    <!--<link rel="stylesheet" href="/css/clean-blog.css">-->
+
+    <!-- Pygments Github CSS -->
+    <!--<link rel="stylesheet" href="/css/syntax.css">-->
+
+    <!-- Custom Fonts -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href='//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    
+    <!-- jQuery -->
+    <script src="/js/jquery.min.js "></script>
+    
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/js/bootstrap.min.js "></script>
+    
+    <!-- Custom Theme JavaScript -->
+    <script src="/js/clean-blog.min.js "></script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!--Google Analytics-->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-65063711-1', 'auto');
+      ga('send', 'pageview');
+    
+    </script>
+</head>
+
+
+<body>
+    
+<!-- Navigation -->
+<div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="row navbar-project">
+        <div class="col-lg-2 col-sm-4 col-xs-4">
+            <a class="logo" style="color:white;font-weight:bold;font-size:18px;" href="/">Sway</a>
+        </div>
+        <div class="col-lg-8 col-sm-4 col-xs-4" style="justify-content:center;">
+            <span class="col-lg-12 hidden-md hidden-sm hidden-xs" style="text-align:center;color:#B91A42;font-size:16px">Project - Uefa Leagues Bracket</span>
+            <span class="hidden-lg col-md-12 col-sm-12 col-xs-12" style="text-align:center;color:#B91A42;font-size:16px">Project</span>
+        </div>
+        <div class="col-lg-2 col-sm-4 col-xs-4" style="justify-content:flex-end;font-size:20px;">
+            <div id="social-sticker-small">
+                <!--Twitter-->
+                <a href="http://twitter.com/home?status=Uefa Leagues Bracket - @__sway__ - http://sway-blog.be/uefa-leagues-bracket" 
+                onclick="window.open(this.href, 'mywin','left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" style="text-decoration:none">
+                    <span class="fa-stack" style="color:black">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- Post Content -->
+<article>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                
+                <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<style type="text/css">
+	.arrow{
+		stroke-width:5;
+		stroke:#000;
+		stroke-dasharray:5, 5;
+	}
+</style>
+
+<script>
+
+$(document).ready(function() {
+
+// Ajax url's
+var data_url = "http://www.sway-blog.be/data/elo-uefa-leagues/data.json"
+var ajax_call_data = $.ajax({
+      url: data_url,
+      dataType: 'json',
+      crossDomain: true, // enable this
+    })
+
+var date_url = "http://www.sway-blog.be/data/elo-uefa-leagues/date.json"
+var ajax_call_date = $.ajax({
+          url: date_url,
+          dataType: 'json',
+          crossDomain: true, // enable this
+        })
+
+var teams_url = "http://www.sway-blog.be/data/elo-uefa-leagues/teams.json"
+var ajax_call_teams = $.ajax({
+          url: teams_url,
+          dataType: 'json',
+          crossDomain: true, // enable this
+        })
+
+var knockout_round_url = "http://www.sway-blog.be/data/elo-uefa-leagues/knockout_round.json"
+var ajax_call_knockout_round = $.ajax({
+          url: knockout_round_url ,
+          dataType: 'json',
+          crossDomain: true, // enable this
+        })
+ 
+// Get data       
+$.when(ajax_call_data,ajax_call_date,ajax_call_teams,ajax_call_knockout_round).done(function(data1, data2, data3,data4){
+    
+    // Initialize data
+    var team_data = data1[0]
+    var last_update = data2[0]
+    var teams_index = data3[0]
+    var knockout_round = data4[0]
+    
+    var league = "ucl"
+    var number_of_games = knockout_round[league][knockout_round[league].length-1]["games"].length
+    var number_of_rounds = number_of_games/2
+    
+    // Create dataset that will be linked to team box on SVG
+    var dataset_games = []
+    var i,j;
+    // for (i=0;i<teams_index.length;i++) {
+        // Add name to object
+        for (j=0;j<number_of_games;j++) {
+            var team_1 = knockout_round[league][knockout_round[league].length-1]["games"][j][0]
+            var team_2 = knockout_round[league][knockout_round[league].length-1]["games"][j][1]
+            team_data[league][team_1].name = team_1
+            team_data[league][team_1].opponent = team_2
+            
+            team_data[league][team_2].name = team_2
+            team_data[league][team_2].opponent = team_1
+            
+            dataset_games.push([team_data[league][team_1],team_data[league][team_2]])
+        }
+    // }
+    
+    console.log(dataset_games)
+
+    // Dimension parameters
+    var w = $("#vis").width()
+    var h = $(window).height() - 60 - 40
+    var w_padding = 0.01*w
+    var h_padding = 0.01*h
+    var w_game =  100
+    var h_game = 30
+    var w_team = w_game  
+    var h_game = h_game/2
+    var game_padding = 100
+    
+    
+    // Initialize SVG
+    var svg = d3.select("body")
+            .append("svg")
+            .attr("width", w)
+            .attr("height", h)
+    
+    // Create Game Groups
+    var gamegroup = svg .selectAll("g")
+                        .data(dataset_games)
+                        .enter()
+                        .append("g")
+                        .attr("class","game-group")
+                        .attr("id",function(d,i) {
+                            return "game_" + String(i)
+                        })
+                        .attr("transform",function(d,i) {
+                            if (i < number_of_games/2) { // Games on the left
+                                var x_translate = w_padding
+                                var y_translate = h_padding + i*(h_game + game_padding)                               
+                            } else { // Games on the right
+                                var x_translate = w - w_padding - w_game
+                                var y_translate = h_padding + i*(h_game + game_padding)                                  
+                            }
+                            
+                            return "translate(" + x_translate + "," + y_translate + ")";
+                        })
+    
+    
+    // Create Team Groups
+    // for (i=0;i<)
+    var teambox = gamegroup .selectAll("g")
+                            .data(function(d) {
+                                return d;
+                            })
+                            .enter()
+                            .append("g")
+                            .attr("id","test")
+    
+    
+    // // Node
+    // var nodes = svg.append("g");
+    // var node = nodes.selectAll("g")
+    //               .data(dataset)
+    //               .enter().append("g")
+    //               .attr("transform", function(d, i) { 
+    //                     if (d.group == "Group A") {
+    //                         y_translate = (h_country + delta_country)*(parseInt(d.standing.R)-1)
+    //                         return "translate(" + 0.01*w + "," + y_translate + ")";
+    //                     }    else if (d.group == "Group B") {
+    //                             y_translate = (4*h_country + 3*delta_country + delta_group) + (h_country + delta_country)*(parseInt(d.standing.R)-1)
+    //                             return "translate(" + 0.01*w + "," + y_translate + ")";
+    //                     }    else if (d.group == "Group C") {
+    //                             y_translate = (8*h_country + 6*delta_country + 2*delta_group) + (h_country + delta_country)*(parseInt(d.standing.R)-1)
+    //                             return "translate(" + 0.01*w + "," + y_translate + ")";
+    //                     }    else if (d.group == "Group D") {
+    //                             x_translate = w - w_country - 0.01*w
+    //                             y_translate = (h_country + delta_country)*(parseInt(d.standing.R)-1)
+    //                             return "translate(" + x_translate + "," + y_translate + ")";
+    //                     }    else if (d.group == "Group E") {
+    //                             x_translate = w - w_country - 0.01*w
+    //                             y_translate = (4*h_country + 3*delta_country + delta_group) + (h_country + delta_country)*(parseInt(d.standing.R)-1)
+    //                             return "translate(" + x_translate + "," + y_translate + ")";
+    //                     }    else if (d.group == "Group F") {
+    //                             x_translate = w - w_country - 0.01*w
+    //                             y_translate = (8*h_country + 6*delta_country + 2*delta_group) + (h_country + delta_country)*(parseInt(d.standing.R)-1)
+    //                           return "translate(" + x_translate + "," + y_translate + ")";
+    //                     }                      
+                      
+    //               })
+    //               .on("mouseover",function(d) {
+    //                 // Change size of position circles
+        
+    //                 circles_group_phase.select(".fourth").transition().duration(1000).delay(0).attr("r",25 + circleSize(d.odds[0])).attr("stroke-width",Math.max(2*(circleSize(d.odds[0])),1)).attr("stroke","red")
+    //                 circles_group_phase.select(".third").transition().duration(1000).delay(0).attr("r",25 + circleSize(d.odds[1])).attr("stroke-width",Math.max(2*(circleSize(d.odds[1])),1)).attr("stroke","green")
+    //                 circles_group_phase.select(".second").transition().duration(1000).delay(0).attr("r",25 + circleSize(d.odds[2])).attr("stroke-width",Math.max(2*(circleSize(d.odds[2])),1)).attr("stroke","green")
+    //                 circles_group_phase.select(".first").transition().duration(1000).delay(0).attr("r",25 + circleSize(d.odds[3])).attr("stroke-width",Math.max(2*(circleSize(d.odds[3])),1)).attr("stroke","green")
+                    
+    //                 // Change text
+    //                 circles_group_phase.select(".text_fourth").transition()
+    //                                               .duration(1000).delay(0)
+    //                                               .tween("text", function(e) {
+    //                                                     var i = d3.interpolate(e,d.odds[0]),
+    //                                                         prec = (e + "").split("."),
+    //                                                         round = (prec.length > 1) ? Math.pow(10, prec[1].length) : 1;
+                                            
+    //                                                     return function(t) {
+    //                                                         this.textContent = String(Math.round(i(t) * round) / round) + "%"; // "4th: " +   + "%"
+    //                                                     };
+    //                                                 });
+    //                 circles_group_phase.select(".text_third").transition()
+    //                                               .duration(1000).delay(0)
+    //                                               .tween("text", function(e) {
+    //                                                     var i = d3.interpolate(e,d.odds[1]),
+    //                                                         prec = (e + "").split("."),
+    //                                                         round = (prec.length > 1) ? Math.pow(10, prec[1].length) : 1;
+                                            
+    //                                                     return function(t) {
+    //                                                         this.textContent = String(Math.round(i(t) * round) / round) + "%";
+    //                                                     };
+    //                                                 });
+    //                 circles_group_phase.select(".text_second").transition()
+    //                                               .duration(1000).delay(0)
+    //                                               .tween("text", function(e) {
+    //                                                     var i = d3.interpolate(e,d.odds[2]),
+    //                                                         prec = (e + "").split("."),
+    //                                                         round = (prec.length > 1) ? Math.pow(10, prec[1].length) : 1;
+                                            
+    //                                                     return function(t) {
+    //                                                         this.textContent = String(Math.round(i(t) * round) / round) + "%";
+    //                                                     };
+    //                                                 });
+    //                 circles_group_phase.select(".text_first").transition()
+    //                                               .duration(1000).delay(0)
+    //                                               .tween("text", function(e) {
+    //                                                     var i = d3.interpolate(e,d.odds[3]),
+    //                                                         prec = (e + "").split("."),
+    //                                                         round = (prec.length > 1) ? Math.pow(10, prec[1].length) : 1;
+                                            
+    //                                                     return function(t) {
+    //                                                         this.textContent = String(Math.round(i(t) * round) / round) + "%";
+    //                                                     };
+    //                                                 });      
+                                                    
+    //                 // Change thickness of arrows
+    //                 pos1_to_r16.transition().duration(1000).delay(0).attr("stroke-width",Math.max(d.odds[3],0.5))
+    //                 pos2_to_r16.transition().duration(1000).delay(0).attr("stroke-width",Math.max(d.odds[2],0.5))
+    //                 pos3_to_r16.transition().duration(1000).delay(0).attr("stroke-width",Math.max(d.odds[4]-d.odds[3]-d.odds[2],0.5))
+    //                 r16_to_qf.transition().duration(1000).delay(0).attr("stroke-width",Math.max(d.odds[5],0.5))
+    //                 qf_to_sf.transition().duration(1000).delay(0).attr("stroke-width",Math.max(d.odds[6],0.5))
+    //                 sf_to_f.transition().duration(1000).delay(0).attr("stroke-width",Math.max(d.odds[7],0.5))
+    //                 f_to_w.transition().duration(1000).delay(0).attr("stroke-width",Math.max(d.odds[8],0.5))
+                    
+        
+    //             })
+    //               .on("mouseout",function(d) {
+    //                 circles_group_phase.select(".fourth").transition().duration(1000).delay(0).attr("r",25).attr("stroke-width",1).attr("stroke","black")
+    //                 circles_group_phase.select(".third").transition().duration(1000).delay(0).attr("r",25).attr("stroke-width",1).attr("stroke","black")
+    //                 circles_group_phase.select(".second").transition().duration(1000).delay(0).attr("r",25).attr("stroke-width",1).attr("stroke","black")
+    //                 circles_group_phase.select(".first").transition().duration(1000).delay(0).attr("r",25).attr("stroke-width",1).attr("stroke","black")
+                    
+    //                 circles_group_phase.select(".text_fourth").transition().text("4th")
+    //                 circles_group_phase.select(".text_third").transition().text("3rd")
+    //                 circles_group_phase.select(".text_second").transition().text("2nd")
+    //                 circles_group_phase.select(".text_first").transition().text("1st")
+                    
+    //                 pos1_to_r16.transition().duration(1000).delay(0).attr("stroke-width",1)
+    //                 pos2_to_r16.transition().duration(1000).delay(0).attr("stroke-width",1)
+    //                 pos3_to_r16.transition().duration(1000).delay(0).attr("stroke-width",1)
+    //                 r16_to_qf.transition().duration(1000).delay(0).attr("stroke-width",1)
+    //                 qf_to_sf.transition().duration(1000).delay(0).attr("stroke-width",1)
+    //                 sf_to_f.transition().duration(1000).delay(0).attr("stroke-width",1)
+    //                 f_to_w.transition().duration(1000).delay(0).attr("stroke-width",1)
+    //               });
+    
+    // // Create Group Phase group
+    // var w_position = 0.05*w
+    // var group_phase = svg.append("g")
+    //                      .attr("transform", function(d, i) {
+    //                       x_translate = 0.01*w + w_country + 0.1*w
+    //                       y_translate = 0
+    //                       return "translate(" + x_translate + "," + y_translate + ")";
+    //                       });   
+                          
+    // var knockout_phase = svg.append("g")
+    //                      .attr("transform", function(d, i) {
+    //                       x_translate = 0.01*w + w_country + 0.1*w
+    //                       y_translate = 3*delta_country + 4*h_country + delta_group
+    //                       return "translate(" + x_translate + "," + y_translate + ")";
+    //                       });  
+                          
+    // // Create rectangle
+    // var w_group_phase = (w - 2*0.01*w - 2*w_country - 2*0.1*w)
+    // var h_group_phase = 3*delta_country + 4*h_country
+    // var group_phase_rect = group_phase.append("rect")
+    //                                   .attr("width",w_group_phase)
+    //                                   .attr("height",h_group_phase)
+    //                                   .attr("stroke","rgb(0,0,0)")
+    //                                   .attr("stroke-width",1)
+    //                                   .attr("fill","rgb(255,255,255)")
+    
+    // var w_knockout_phase = (w - 2*0.01*w - 2*w_country - 2*0.1*w)
+    // var h_knockout_phase = 6*delta_country + 8*h_country + delta_group
+    // var knockout_phase_rect = knockout_phase.append("rect")
+    //                                   .attr("width",w_knockout_phase)
+    //                                   .attr("height",h_knockout_phase)
+    //                                   .attr("stroke","rgb(0,0,0)")
+    //                                   .attr("stroke-width",1)
+    //                                   .attr("fill","rgb(255,255,255)")
+                                      
+    // // Create text
+    // var group_phase_text = group_phase.append("text")
+    //                                   .attr("x",3)
+    //                                   .attr("y",0)
+    //                                   .attr("dy","1em")
+    //                                   .text("Group Phase")
+                                      
+    // var knockout_phase_text = knockout_phase.append("text")
+    //                                   .attr("x",3)
+    //                                   .attr("y",0)
+    //                                   .attr("dy","1em")
+    //                                   .text("Knockout Phase")
+                                      
+    // // Create Circles group
+    // var circles_group_phase = group_phase.selectAll("g")
+    //                   .data([25,25,25,25])
+    //                   .enter().append("g")
+    //                   .attr("class","position")
+    //                   .attr("transform", function(d, i) {
+    //                       x_translate = (w - 2*0.01*w - 2*w_country - 2*0.1*w)*i/4
+    //                       y_translate = 0
+    //                       return "translate(" + x_translate + "," + y_translate + ")";
+    //               });
+ 
+    // var circles_knockout_phase = knockout_phase.selectAll("g")
+    //                   .data([25,25,25,25,25])
+    //                   .enter().append("g")
+    //                   .attr("class","position")
+    //                   .attr("transform", function(d, i) {
+    //                       if (i == 0) {
+    //                           x_translate = w_knockout_phase/2
+    //                           y_translate = 25 + 10      
+    //                           return "translate(" + x_translate + "," + y_translate + ")";
+    //                       } else if (i == 1) {
+    //                           x_translate = 25 + 10
+    //                           y_translate = h_knockout_phase/2    
+    //                           return "translate(" + x_translate + "," + y_translate + ")";                               
+    //                       } else if (i == 2) {
+    //                           x_translate = w_knockout_phase/2
+    //                           y_translate = h_knockout_phase - 25 - 10 
+    //                           return "translate(" + x_translate + "," + y_translate + ")";                                 
+    //                       } else if (i == 3) {
+    //                           x_translate = w_knockout_phase - 25 - 10
+    //                           y_translate = h_knockout_phase/2  
+    //                           return "translate(" + x_translate + "," + y_translate + ")";                                 
+    //                       } else if (i == 4) {
+    //                           x_translate = w_knockout_phase/2
+    //                           y_translate = h_knockout_phase/2    
+    //                           return "translate(" + x_translate + "," + y_translate + ")";                                 
+    //                       }
+                           
+    //               });
+                  
+    // // Add circles to position
+    // var cx_group = (w - 2*0.01*w - 2*w_country - 2*0.1*w)/(4*2)
+    // var cy_group = 70
+    // circles_group_phase.append("circle")
+    //          .attr("class",function(d,i) {
+    //               if (i == 0) {
+    //                   return "first"
+    //               } else if (i == 1) {
+    //                   return "second"
+    //               } else if (i == 2) {
+    //                   return "third"
+    //               } else if (i == 3) {
+    //                   return "fourth"
+    //               }
+    //           })
+    //          .attr("r",function(d) {
+    //           return d  
+    //          })
+    //          .attr("cx",cx_group)
+    //          .attr("cy",cy_group)
+    //          .attr("fill","rgb(255,255,255)")
+    //          .attr("stroke","rgb(0,0,0)")
+    //          .attr("stroke-width",1)
+
+    // circles_knockout_phase.append("circle")
+    //          .attr("class",function(d,i) {
+    //               if (i == 0) {
+    //                   return "roundof16"
+    //               } else if (i == 1) {
+    //                   return "quarterfinal"
+    //               } else if (i == 2) {
+    //                   return "semifinal"
+    //               } else if (i == 3) {
+    //                   return "final"
+    //               } else if (i == 4) {
+    //                   return "winner"
+    //               }
+    //           })
+    //          .attr("r",function(d) {
+    //           return d  
+    //          })
+    //          .attr("cx",0)
+    //          .attr("cy",0)
+    //          .attr("fill","rgb(255,255,255)")
+    //          .attr("stroke","rgb(0,0,0)")
+    //          .attr("stroke-width",1)
+
+    // // Add text to position
+    // circles_group_phase.append("text")
+    //         .attr("class",function(d,i) {
+    //               if (i == 0) {
+    //                   return "text_first"
+    //               } else if (i == 1) {
+    //                   return "text_second"
+    //               } else if (i == 2) {
+    //                   return "text_third"
+    //               } else if (i == 3) {
+    //                   return "text_fourth"
+    //               }
+    //           })
+    //         .attr("x",(w - 2*0.01*w - 2*w_country - 2*0.1*w)/(4*2))             
+    //         .attr("y", 70)
+    //         .attr("dy", "0.35em")
+    //         .style("text-anchor","middle")
+    //         // .attr("dy", ".35em")
+    //         .text(function(d,i) {
+    //               if (i == 0) {
+    //                   return "1st"
+    //               } else if (i == 1) {
+    //                   return "2nd"
+    //               } else if (i == 2) {
+    //                   return "3rd"
+    //               } else if (i == 3) {
+    //                   return "4th"
+    //               }
+    //          })
+    
+    // // Add arc paths to Knockout Phase
+    
+    // var lineFunction = d3.svg.line()
+    //                      .x(function(d) { return d.x; })
+    //                      .y(function(d) { return d.y; })
+    //                      .interpolate("basis");
+
+    // var points = [{"x":0.01*w + w_country + 0.1*w + cx_group,"y":cy_group + 25},{"x":0.01*w + w_country + 0.1*w + w_knockout_phase/2,"y":h_group_phase + delta_group + 10}]
+    // var pos1_to_r16 = svg.append("path")
+    //                               .attr("d",lineFunction(points))
+    //                               .attr("stroke","blue")
+    //                               .attr("stroke-width",1)
+    //                               .attr("fill","none")
+                                  
+    // var points = [{"x":0.01*w + w_country + 0.1*w + 3*cx_group,"y":cy_group + 25},{"x":0.01*w + w_country + 0.1*w + w_knockout_phase/2,"y":h_group_phase + delta_group + 10}]
+    // var pos2_to_r16 = svg.append("path")
+    //                               .attr("d",lineFunction(points))
+    //                               .attr("stroke","blue")
+    //                               .attr("stroke-width",1)
+    //                               .attr("fill","none")
+
+    // var points = [{"x":0.01*w + w_country + 0.1*w + 5*cx_group,"y":cy_group + 25},{"x":0.01*w + w_country + 0.1*w + w_knockout_phase/2,"y":h_group_phase + delta_group + 10}]
+    // var pos3_to_r16 = svg.append("path")
+    //                               .attr("d",lineFunction(points))
+    //                               .attr("stroke","blue")
+    //                               .attr("stroke-width",1)
+    //                               .attr("fill","none")
+    
+    // var points = [{"x":w_knockout_phase/2 - 25,"y":25 + 10},{"x":w_knockout_phase/2 - 25 -10 - 80,"y":(h_knockout_phase/2 -25)/2},{"x":25+10,"y":h_knockout_phase/2 -25}]
+    // var r16_to_qf = knockout_phase.append("path")
+    //                               .attr("d",lineFunction(points))
+    //                               .attr("stroke","blue")
+    //                               .attr("stroke-width",1)
+    //                               .attr("fill","none")
+                                  
+    // var points = [{"x":25+10,"y":h_knockout_phase/2 +25},{"x":w_knockout_phase/2 - 25,"y":h_knockout_phase -25 - 10}]
+    // var qf_to_sf = knockout_phase.append("path")
+    //                               .attr("d",lineFunction(points))
+    //                               .attr("stroke","blue")
+    //                               .attr("stroke-width",1)
+    // var points = [{"x":w_knockout_phase/2 + 25,"y":h_knockout_phase -25 - 10},{"x":w_knockout_phase - 25 - 10,"y":h_knockout_phase/2 + 25}]
+    // var sf_to_f = knockout_phase.append("path")
+    //                               .attr("d",lineFunction(points))
+    //                               .attr("stroke","blue")
+    //                               .attr("stroke-width",1)        
+    // var points = [{"x":w_knockout_phase - 50 - 10,"y":h_knockout_phase/2 },{"x":w_knockout_phase/2 + 25,"y":h_knockout_phase/2}]                              
+    // var f_to_w = knockout_phase.append("path")
+    //                               .attr("d",lineFunction(points))
+    //                               .attr("stroke","blue")
+    //                               .attr("stroke-width",1) 
+
+         
+    // // Add some rectangles
+    // node.append("rect")
+    //     .attr("width",w_country)
+    //     .attr("height",h_country)
+    //     .attr("fill","rgb(255,255,255)")
+    //     .attr("stroke","black")
+    //     .attr("stroke-width","1px")
+    
+    // // Add country flags
+    // node.append("image")
+    //     .attr("x",2)
+    //     .attr("y",(h_country-32)/2)
+    //     .attr("height",32)
+    //     .attr("width",32)
+    //     .attr("xlink:href",function(d) {
+    //         base_dir = "/img/projects/elo-uefa-euro2016/"
+    //         return base_dir + d.name + ".png"
+            
+    //     });
+
+        
+    // // Add text
+    // node.append("text")
+    //     // .attr("class","country")
+    //     .attr("x", 36)
+    //     .attr("y", h_country/2)
+    //     .attr("dy", ".35em")
+    //     .text(function(d) { return d.name; });
+  
+})
+
+})
+
+function circleSize(odds) {
+    return 0.9*Math.sqrt(odds) + 0.1*odds;
+}
+</script>
+
+<div class="row">
+    <div id="vis" class="col-lg-8 col-lg-offset-2" style="margin-top:60px"></div>
+</div>
+
+
+            </div>
+        </div>
+    </div>
+</article>
+
+</body>
+
+</html>

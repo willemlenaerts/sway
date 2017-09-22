@@ -1,0 +1,262 @@
+/*Standard XS devices*/
+body {
+    font-family: 'Lora', 'Times New Roman', serif;
+}
+.titel {
+    font-size:14px;
+    font-style:bold;
+    text-align:center;
+}
+div.tooltip {   
+  position: absolute;           
+  text-align: center;           
+  padding: 2px;             
+  font-size: 10px;     
+  background: #FFFFFF;
+  border: 1px solid #000000;      
+  border-radius: 2px;           
+  pointer-events: none;     
+  display:none;
+}
+.tooltip-titel {
+    font-size:12px;
+    font-style:bold;   
+    text-align:center;
+    border-bottom: solid 1px black;
+}
+.tooltip-partij {
+    font-size:12px;
+    text-align:left;
+}
+.tooltip-procent {
+    font-size:12px;
+    text-align:center;
+}
+.tabel-partij {
+    text-align:left;
+    font-weight: bold;
+}
+.tabel-procent {
+    text-align:center;
+}
+.table {
+    margin-bottom: 0px;
+    border: 1px solid #ddd;
+    max-height: 100px;
+    overflow-y: auto;
+}
+.table-responsive {
+    border: 0px;
+    margin-bottom: 0px !important;
+
+}
+#info_wrapper {
+}
+#tekst_tabel {
+    /*margin-bottom: 10px;*/
+}
+#tekst_wrapper {
+    /*border-bottom: solid 1px grey;*/
+}
+.verkiezing_tabel {
+    margin-top: 10px;
+
+}
+#kies_gemeente_input {
+    text-align:center;
+    font-weight:bold;
+}
+.project_titel {
+    font-weight: 800;  
+    font-size: 24px;
+    text-align:center;
+}
+#project_uitleg {
+    font-size: 18px;
+    color: #404040;
+}
+h1 {
+    margin-top:10px !important;
+    margin-bottom:10px !important;
+}
+/*Small devices*/
+@media (min-width: 768px) {
+.titel {
+    font-size:16px;
+    font-style:bold;
+    text-align:center;
+}
+.tooltip-titel {
+    font-size:16px;
+    font-style:bold; 
+    text-align:center;
+    border-bottom: solid 1px black;
+}
+.tooltip-text {
+    font-size:14px;
+    text-align:center;
+}
+.table {
+    margin-bottom: 0px;
+    border: 1px solid #ddd;
+    max-height: 150px;
+    overflow-y: auto;
+    
+}
+.table-responsive {
+    border: 0px;
+    margin-bottom: 0px !important;
+
+}
+.verkiezingen_tabel {
+    margin-top: 10px;
+}
+.project_titel {
+    font-size: 26px;
+}
+}
+
+/*Medium devices*/
+@media (min-width: 992px) {
+.titel {
+    font-size:18px;
+    font-style:bold;
+    text-align:center;
+}
+.tooltip-titel {
+    font-size:18px;
+    font-style:bold;  
+    text-align:center;
+    border-bottom: solid 1px black;
+}
+.tooltip-text {
+    font-size:14px;
+    text-align:center;
+}
+.table {
+    margin-bottom: 0px;
+    border: 1px solid #ddd;
+    max-height: 200px;
+    overflow-y: auto;
+    
+}
+.table-responsive {
+    border: 0px;
+    margin-bottom: 0px !important;
+}
+.verkiezingen_tabel {
+    margin-top: 10px;
+}
+.project_titel {
+    font-size: 30px;
+}
+}
+
+/*Large devices*/
+@media (min-width: 1200px) {
+.titel {
+    font-size:20px;
+    font-style:bold;
+    text-align:center;
+}
+div.tooltip {
+    display:block;
+}
+.tooltip-titel {
+    font-size:20px;
+    font-style:bold; 
+    text-align:center;
+    border-bottom: solid 1px black;
+}
+.tooltip-text {
+    font-size:16px;
+    text-align:center;
+}
+.table {
+    margin-bottom: 0px;
+    border: 1px solid #ddd;
+    max-height: 1000px;
+    overflow-y: auto;
+}
+.table-responsive {
+    border: 0px;
+    margin-bottom: 0px !important;
+}
+#info_wrapper {
+    border-right: solid 1px grey;
+}
+.verkiezingen_tabel {
+    margin-top: 10px;
+    height: 100%;
+}
+.project_titel {
+    font-size: 36px;
+}
+}
+
+/*Slider*/
+.slider.slider-horizontal {
+  width: 100% !important;
+}
+
+/*TypeAhead*/
+.typeahead
+.twitter-typeahead
+.tt-suggestion 
+.tt-selectable
+.tt-hint
+.tt-menu
+.tt-input
+.tt-dropdown-menu
+.input-group {
+    font-family: Lora !important;
+    text-align:center;
+}
+
+.vertical-center {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
+}
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
+/*Center placeholder*/
+::-webkit-input-placeholder {
+   text-align: center;
+   font-weight: normal;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   text-align: center;
+   font-weight: normal;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   text-align: center;  
+   font-weight: normal;
+}
+
+:-ms-input-placeholder {  
+   text-align: center; 
+   font-weight: normal;
+}
+
+/*Timeline CSS*/
+.vis-timeline {
+    border: 0px !important;
+}
+
+/*Make bootstrap cols in a row same height*/
+.col-height {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+

@@ -1,0 +1,18 @@
+# Site settings
+title: Sway
+header-img: img/sway_home_bg.jpg
+email: sway@exergos.be
+description: "Interactive Stories with Data"
+baseurl: "/startbootstrap-clean-blog-jekyll"
+url: "http://sway-blog.be"
+twitter_username: __sway__
+# github_username:  exergos
+# facebook_username:  willemlenaerts
+
+# Build settings
+markdown: kramdown
+highlighter: pygments
+permalink: pretty
+gems: [jekyll-paginate]
+paginate: 20
+exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]

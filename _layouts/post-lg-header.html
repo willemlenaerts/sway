@@ -1,0 +1,226 @@
+---
+layout: default
+---
+
+<!--<header class="intro-header" style="position:fixed !important;position:absolute;top:0;right:0;bottom:0;left:0;background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}')">-->
+<header class="intro-header" style="margin-bottom:0px !important;height:100vh;background-size: cover;background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}')"> 
+
+    <div class="container" style='position: relative;top: 50%;transform: translateY(-50%);'>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2">
+                        <div class="post-heading">
+                            <h1>{{ page.title }}</h1>
+                            {% if page.subtitle %}
+                            <h2 class="subheading">{{ page.subtitle }}</h2>
+                            {% endif %}
+                            <span class="meta">Posted by {% if page.author %}{{ page.author }}{% else %}{{ site.title }}{% endif %} on {{ page.date | date: "%B %-d, %Y" }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!--Social media-->
+<script>
+$(document).ready(function() {
+
+    var s = $("#social-sticker-small");
+    var s_height = $("#social-sticker-small").height();
+    var l = $("#social-sticker-large");
+    l.show()
+    var l_height = $("#social-sticker-large").height();
+    var pos_s = s.position();
+    pos_s.top = pos_s.top - s_height
+    var pos_l = l.position();
+    pos_l.top = pos_l.top - s_height
+    var viewportHeight_start = $(window).height();
+    // Set margin left of l
+    l.css("margin-left", parseInt($(".container").css("margin-left").replace("px", "")) - parseInt($(".container").css("padding-left").replace("px", "")) - l.width() - parseInt($(".container").css("padding-right").replace("px", "")))
+
+    $(window).scroll(function() {
+        var viewportHeight = $(window).height();
+        var windowpos = $(window).scrollTop();
+        pos_s.top = pos_s.top - (viewportHeight_start - viewportHeight)
+        if (windowpos >= pos_s.top) {
+            s.addClass("stick-small");
+        } else {
+            s.removeClass("stick-small"); 
+        }
+        
+        pos_l.top = pos_l.top - (viewportHeight_start - viewportHeight)
+        viewportHeight_start = viewportHeight
+        if (windowpos >= pos_l.top) {
+            l.addClass("stick");
+        } else {
+            l.removeClass("stick"); 
+        }
+    });
+    $(window).resize(function() {
+        // Reinitialize viewportHeight_start and pos_s and pos_l
+      viewportHeight_start = $(window).height();
+
+      s.removeClass("stick-small");
+      pos_s = s.position();
+      
+      l.removeClass("stick"); 
+      pos_l = l.position();
+      
+      l.css("margin-left", parseInt($(".container").css("margin-left").replace("px", "")) - parseInt($(".container").css("padding-left").replace("px", "")) - l.width() - parseInt($(".container").css("padding-right").replace("px", "")))
+    
+    // Now check if l is fully visible
+    if ($(window).width() < 1300) {
+        l.hide()
+        if (s.css("display") == "none") {
+            s.removeClass("hidden-lg")
+            $("#social-sticker-small-white").removeClass("hidden-lg")
+            pos_s = s.position();
+        }
+    } else {
+        l.show()
+        s.addClass("hidden-lg")
+        $("#social-sticker-small-white").addClass("hidden-lg")
+        pos_l = l.position();
+    }
+    
+    var viewportHeight = $(window).height();
+    var windowpos = $(window).scrollTop();
+    pos_s.top = pos_s.top - (viewportHeight_start - viewportHeight)
+    if (windowpos >= pos_s.top) {
+        s.addClass("stick-small");
+    } else {
+        s.removeClass("stick-small"); 
+    }
+    
+    pos_l.top = pos_l.top - (viewportHeight_start - viewportHeight)
+    viewportHeight_start = viewportHeight
+    if (windowpos >= pos_l.top) {
+        l.addClass("stick");
+    } else {
+        l.removeClass("stick"); 
+    }
+    })
+});
+</script>
+<!---->
+<div id="social-sticker-large" class="col-lg-1 hidden-md hidden-sm hidden-xs" style="text-align:center;margin-top:30px;display:none !important">
+    <!--Twitter-->
+    <a href="http://twitter.com/home?status={{ page.title }} - @{{ site.twitter_username }} - {{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}" 
+    onclick="window.open(this.href, 'mywin','left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" style="float:right;text-decoration:none">
+        <span class="fa-stack">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+        </span>
+    </a>
+    <br clear="all">    
+    <!--Facebook-->
+    <a href="http://www.facebook.com/sharer.php?u={{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}" 
+    onclick="window.open(this.href, 'mywin','left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" style="float:right;text-decoration:none">
+        <span class="fa-stack">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+        </span>
+    </a>
+    <br clear="all">    
+    <!--Google Plus-->
+    <a href="https://plus.google.com/share?url={{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}"  
+    onclick="window.open(this.href, 'mywin','left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" style="float:right;text-decoration:none">
+        <span class="fa-stack">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-google fa-stack-1x fa-inverse"></i>
+        </span>
+    </a>    
+    <br clear="all">    
+    <!--Linked in-->
+    <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url={{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}"  
+    onclick="window.open(this.href, 'mywin','left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" style="float:right;text-decoration:none">
+        <span class="fa-stack">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+        </span>
+    </a> 
+</div>
+
+<div id="social-sticker-small-white" class="hidden-lg col-md-12 col-sm-12 col-xs-12" style="width:100%;height:30px;"></div>
+ <!-- -->
+<div id="social-sticker-small" class="hidden-lg col-md-12 col-sm-12 col-xs-12" style="text-align:center;">
+    <!--Twitter-->
+    <a href="http://twitter.com/home?status={{ page.title }} - @{{ site.twitter_username }} - {{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}" 
+    onclick="window.open(this.href, 'mywin','left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" style="text-decoration:none">
+        <span class="fa-stack">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+        </span>
+    </a>
+    <!--Facebook-->
+    <a href="http://www.facebook.com/sharer.php?u={{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}" 
+    onclick="window.open(this.href, 'mywin','left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" style="text-decoration:none">
+        <span class="fa-stack">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+        </span>
+    </a>  
+    <!--Google Plus-->
+    <a href="https://plus.google.com/share?url={{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}"  
+    onclick="window.open(this.href, 'mywin','left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" style="text-decoration:none">
+        <span class="fa-stack">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-google fa-stack-1x fa-inverse"></i>
+        </span>
+    </a>       
+    <!--Linked in-->
+    <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url={{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}"  
+    onclick="window.open(this.href, 'mywin','left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" style="text-decoration:none">
+        <span class="fa-stack">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+        </span>
+    </a> 
+</div>
+<!-- Post Content -->
+<article>
+   
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-lg-offset-0 col-md-8 col-md-offset-2">
+                
+                {{ content }}
+                <hr>
+
+                <!--Disqus section-->
+                <div id="disqus_thread"></div>
+                <script type="text/javascript">
+                    /* * * CONFIGURATION VARIABLES * * */
+                    var disqus_shortname = 'sway-blog';
+                    
+                    /* * * DON'T EDIT BELOW THIS LINE * * */
+                    (function() {
+                        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                    })();
+                </script>
+                <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+                
+                <ul class="pager">
+                    {% if page.previous.url %}
+                    <li class="previous">
+                        <a href="{{ page.previous.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.previous.title}}">&larr; Previous Post</a>
+                    </li>
+                    {% endif %}
+                    {% if page.next.url %}
+                    <li class="next">
+                        <a href="{{ page.next.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.next.title}}">Next Post &rarr;</a>
+                    </li>
+                    {% endif %}
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+<hr>

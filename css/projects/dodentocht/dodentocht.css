@@ -1,0 +1,317 @@
+---
+---
+/*Define sass variables*/
+html {
+  background: url("{{ site.baseurl }}/img/projects/dodentocht/dodentocht_background.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height:100%;
+}
+
+body {
+  background-color: transparent;
+  min-height:100%;
+  /*text-align: center;*/
+  /*visibility: hidden;*/
+}
+
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+
+.input-naam-text-align {
+  text-align: center !important;
+}
+.input-naam-comp-text-align {
+  text-align: center !important;
+}
+.table-responsive {
+  border: 0px #FFF solid !important;
+}
+/*-----------------------------------------------------------------------------*/
+/*Set container to 100% for this project*/
+@media (min-width: 768px) {
+  .container {
+    width: 100% !important;
+  }
+  
+  .input-naam-text-align {
+    text-align: center !important;
+  }
+
+  .input-naam-comp-text-align {
+    text-align: center !important;
+  }
+
+}
+@media (min-width: 992px) {
+  .container {
+    width: 100% !important;
+  }
+  
+  .input-naam-text-align {
+    text-align: center !important;
+  }
+
+  .input-naam-comp-text-align {
+    text-align: center !important;
+  }
+
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 100% !important;
+  }
+  
+  .input-naam-text-align {
+    text-align: right !important;
+  }
+
+  .input-naam-comp-text-align {
+    text-align: left !important;
+  }
+}
+
+
+/*-----------------------------------------------------------------------------*/
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 1px !important;
+}
+
+/*-----------------------------------------------------------------------------*/
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
+.autocomplete_results {
+  font-family: monospace, monospace;
+  font-size: 16px;
+}
+
+/*Witte achtergrond auto-aanvullen resultaten*/
+.yui3-aclist {
+  background-color: rgb(255,255,255) !important;
+}
+
+/*Geen shadows in charts*/
+tspan {
+  text-shadow: rgba(0,0,0,0) 0px 0px 0px !important;
+}
+
+/*Input */
+
+
+input {
+  font-family: monospace, monospace;
+  font-size: 16px;
+  border-width: 2px;
+  border-color: #cccccc;
+  padding: 2px;
+  background-color: rgba(130, 201, 119, 0.9);
+  border-style: solid;
+  border-radius: 0px;
+  box-shadow: 0px 0px 0px 0px rgba(42, 42, 42, 0);
+  text-shadow: 0px 0px 0px rgba(42, 42, 42, 0.75);
+  font-weight: normal;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+input:focus {
+  outline: none;
+}
+
+#input_naam {
+    background-color: rgba(130, 201, 119, 0.9);
+}
+
+#input_naam_comp {
+    background-color: rgba(110, 177, 210, 0.9);
+}
+
+#id_your_name_1 {
+  background-color: rgba(130, 201, 119, 0.9);
+}
+
+#id_your_name_2 {
+  background-color: rgba(110, 177, 210, 0.9);
+}
+
+/*#dodentocht_table Style - This is what you want*/
+/*------------------------------------------------------------------ */
+#dodentocht_table {
+  /*Font*/
+  font-family: monospace, monospace;
+  /*Color of header text*/
+  color: #000000;
+  /*Color of table text*/
+  font-size: 11px;
+  text-shadow: 0px 0px 0px #fff;
+
+  /*Border of whole table*/
+  /*border:#478873 1px solid;*/
+  /*-moz-border-radius:3px;*/
+  /*-webkit-border-radius:3px;*/
+  /*border-radius:3px;*/
+  /*-moz-box-shadow: 0 1px 2px #478873;*/
+  /*-webkit-box-shadow: 0 1px 2px #478873;*/
+  /*box-shadow: 0 1px 2px #478873;*/
+}
+
+#dodentocht_table th {
+  /*Color of header text*/
+  color: #000000;
+  font-size: 13px;
+  padding: 10px 10px 10px 10px;
+  /*border-top:1px solid #478873;*/
+  /*border-bottom:1px solid #478873;*/
+  /*background: -webkit-gradient(linear, left top, left bottom, from(#478873), to(#478873));*/
+  /*background: -moz-linear-gradient(top,  #478873,  #478873);*/
+}
+
+#dodentocht_table tbody {
+  /*Color of background*/
+  background: rgba(255, 255, 255, 0.9) !important;
+}
+
+/*Chart Wrapper opmaak*/
+.chart-wrapper {
+  text-align: center;
+}
+.chart-color {
+  /*border:solid;*/
+  /*border-width: 1px;*/
+  background: rgba(255, 255, 255, 0.9) !important;
+  /*margin-bottom: 20px !important;*/
+}
+
+/*Tabel opmaak*/
+.neutral {
+  text-align: center;  
+}
+
+.comp_name {
+  text-align: center;  
+}
+
+.your_name {
+  text-align: center;
+}
+
+.post {
+  text-align: left !important;
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgba(214, 213, 213, 0.9);
+}
+th.comp_name {
+  background: rgba(110, 177, 210, 0.9);
+}
+
+tr:hover td.comp_name {
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(110, 177, 210, 0.9)), to(rgba(110, 177, 210, 0.9)));
+  background: -moz-linear-gradient(top, rgba(110, 177, 210, 0.9), rgba(110, 177, 210, 0.9));
+}
+
+th.your_name {
+  background: rgba(130, 201, 119, 0.9);
+}
+
+tr:hover td.your_name {
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(130, 201, 119, 0.9)), to(rgba(130, 201, 119, 0.9)));
+  background: -moz-linear-gradient(top, rgba(130, 201, 119, 0.9), rgba(130, 201, 119, 0.9));
+}
+
+th.neutral {
+  background: rgba(214, 213, 213, 0.9);
+}
+
+tr:hover td.neutral {
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(214, 213, 213, 0.9)), to(rgba(214, 213, 213, 0.9)));
+  background: -moz-linear-gradient(top, rgba(214, 213, 213, 0.9), rgba(214, 213, 213, 0.9));
+}
+
+td.neutral {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+td.your_name {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+td.comp_name {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+#dodentocht_table th:first-child {
+  text-align: center;
+  padding-left: 20px;
+}
+
+#dodentocht_table tr:first-child th:first-child {
+  /*-moz-border-radius-topleft:3px;*/
+  /*-webkit-border-top-left-radius:3px;*/
+  /*border-top-left-radius:3px;*/
+}
+
+#dodentocht_table tr:first-child th:last-child {
+  /*-moz-border-radius-topright:3px;*/
+  /*-webkit-border-top-right-radius:3px;*/
+  /*border-top-right-radius:3px;*/
+}
+
+#dodentocht_table tr {
+  /*Color of table text*/
+  color: #000000;
+  text-align: center;
+  padding-left: 20px;
+}
+
+#dodentocht_table tr td:first-child {
+  text-align: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-left: 0;
+}
+
+#dodentocht_table tr td {
+  /*border-top: 1px solid #478873;*/
+  border-bottom: 1px solid #478873;
+  /*border-left: 1px solid #478873;*/
+  /*background: #fafafa;*/
+  /*background: -webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#fafafa));*/
+  /*background: -moz-linear-gradient(top,  #fbfbfb,  #fafafa);*/
+}
+
+#dodentocht_table tr.even td {
+  background: #f6f6f6;
+  background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#f6f6f6));
+  background: -moz-linear-gradient(top, #f8f8f8, #f6f6f6);
+}
+
+#dodentocht_table tr:last-child td {
+  border-bottom: 0;
+}
+
+#dodentocht_table tr:last-child td:first-child {
+  -moz-border-radius-bottomleft: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+#dodentocht_table tr:last-child td:last-child {
+  -moz-border-radius-bottomright: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+#header_table td {
+  background: rgba(255, 255, 255, 0.9);
+  font-family: monospace, monospace;
+  font-size: 12px;
+}

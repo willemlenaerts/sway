@@ -1,0 +1,87 @@
+---
+layout: page
+description: "Blog Theme by Sway"
+---
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="list" style="padding-bottom:20px">
+            <div class="list-title">
+                Projects
+            </div>
+            {% assign post_index = 0 %}
+            {% for post in paginator.posts %}
+                {% if post.category == 'project' %}
+                    {% if post_index != 0 %}
+                        <hr style="border-top: 1px solid #AFAAAA">
+                    {% endif %}
+                    {% assign post_index = 1 %}
+                    <div class="list-item row">
+                        <div class="thumbnail-small col-lg-4 col-md-4 col-sm-4 col-xs-12" style="background-image: url('{{ site.baseurl }}/{{ post.thumbnail-img }}');">
+                        </div>
+                        <div class="post-preview col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                            <a href="{{ post.url | prepend: site.baseurl }}">
+                                <h2 class="post-title">            {{ post.title }}
+                                </h2>
+                                {% if post.subtitle %}
+                                <h3 class="post-subtitle">
+                                    {{ post.subtitle }}
+                                </h3>
+                                {% endif %}
+                            </a>
+                            <!--<p class="post-meta">Posted by {% if post.author %}{{ post.author }}{% else %}{{ site.title }}{% endif %} on {{ post.date | date: "%B %-d, %Y" }}</p>-->
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}        
+        </div>
+    </div>
+    <div class="col-lg-6 list-margin">
+        <div class="list" style="padding-bottom:20px">
+            <div class="list-title">
+                Articles
+            </div>
+            {% assign post_index = 0 %}
+            {% for post in paginator.posts %}
+                {% if post.category != 'project' %}
+                    {% if post_index != 0 %}
+                        <hr style="border-top: 1px solid #AFAAAA">
+                    {% endif %}
+                    {% assign post_index = 1 %}
+                    <div class="list-item row">
+                        <div class="thumbnail-small col-lg-4 col-md-4 col-sm-4 col-xs-12" style="background-image: url('{{ site.baseurl }}/{{ post.thumbnail-img }}');">
+                        </div>
+                        <div class="post-preview col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                            <a href="{{ post.url | prepend: site.baseurl }}">
+                                <h2 class="post-title post-title-article">            {{ post.title }}
+                                </h2>
+                                {% if post.subtitle %}
+                                <h3 class="post-subtitle">
+                                    {{ post.subtitle }}
+                                </h3>
+                                {% endif %}
+                            </a>
+                            <p class="post-meta">Posted by {% if post.author %}{{ post.author }}{% else %}{{ site.title }}{% endif %} on {{ post.date | date: "%B %-d, %Y" }}</p>
+                        </div>
+                    </div> 
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>    
+</div>
+
+<!-- Pager -->
+{% if paginator.total_pages > 1 %}
+<ul class="pager">
+    {% if paginator.previous_page %}
+    <li class="previous">
+        <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Newer Posts</a>
+    </li>
+    {% endif %}
+    {% if paginator.next_page %}
+    <li class="next">
+        <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts &rarr;</a>
+    </li>
+    {% endif %}
+</ul>
+{% endif %}

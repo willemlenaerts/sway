@@ -1,0 +1,72 @@
+/*#chart_slider_data .slider-selection {*/
+/*    background: rgba(0,0,0,0.2);*/
+/*}*/
+
+/*#chart_slider_data .slider-track-high {*/
+/*    background: rgba(0,0,0,0.2);*/
+/*}*/
+
+/*#chart_slider_data .slider-handle {*/
+/*    background-image: url("");*/
+/*    background-color: rgb(0,100,0) ;*/
+    
+/*}    */
+
+.yui3-aclist {
+    border: 1px solid rgb(0, 0, 0) !important;
+}
+.yui3-aclist-item {
+    border-bottom: 1px solid !important;
+}
+.yui3-aclist-content {
+    background-color: #FFF !important;
+}
+.MathJax_Display {
+    font-size: 12px !important;
+    text-align: left !important;
+}
+.tdf-table {
+    font-size: 12px !important;
+}
+.stage-table {
+    font-size: 12px !important;
+}
+/*-----------------------------------------------------------------------------*/
+/*Set container to 100% for this project*/
+@media (min-width: 768px) {
+.MathJax_Display {
+    font-size: 14px !important;
+    text-align: center !important;
+}
+.tdf-table {
+    font-size: 12px !important;
+}
+.stage-table {
+    font-size: 12px !important;
+}
+}
+@media (min-width: 992px) {
+
+.MathJax_Display {
+    font-size: 16px !important;
+    text-align: center !important;
+}
+.tdf-table {
+    font-size: 18px !important;
+}
+.stage-table {
+    font-size: 18px !important;
+}
+}
+@media (min-width: 1200px) {
+    .MathJax_Display {
+    font-size: 16px !important;
+    text-align: center !important;
+}
+.tdf-table {
+    font-size: 20px !important;
+}
+.stage-table {
+    font-size: 20px !important;
+}
+}

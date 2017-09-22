@@ -1,0 +1,129 @@
+.scrollable-menu {
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+}
+
+#tooltip-elo-one {
+    font-size: 12px !important;
+    /*width:400px;*/
+}
+#tooltip-elo-two {
+    font-size: 12px !important;
+    /*width:400px;*/
+}
+
+#tooltip-elo-three {
+    font-size: 12px !important;
+    /*width:400px;*/
+}
+#tooltip-table {
+    width: auto !important;
+    white-space: nowrap;
+    font-size:18px !important;
+}
+
+/*markdown-toc menu with border*/
+.toc {
+    border-style: solid;
+    border-color: grey;
+}
+
+/*Huisstijl voor tabellen*/
+.table-custom {
+    background-color: rgb(240,240,240);
+}
+
+.caption-custom {
+    font-size: 12px;
+    text-align: center;
+}
+
+/*ddSlick text size*/
+.dd-select {
+    height: 59px;
+}
+.dd-option-text {
+    font-size: 16px;
+}
+
+.dd-selected {
+    font-size: 16px;
+    height: 57px;
+    line-height: 32px;
+}
+
+.dd-selected-text {
+    font-size: 16px;
+    /*Height Same as the icon & centralized*/
+    height: 32px; 
+    line-height: 32px;
+}
+
+/*head to head table*/
+
+.head-to-head {
+    max-height: 120px;
+    overflow-y:auto;
+}
+
+.head-to-head-row {
+     padding: 0px;
+     text-align:center;
+     font-size: 16px;
+     background-color: rgb(240,240,240);
+}
+
+#head-to-head-header {
+    text-align:center;
+    font-size: 16px;
+    background-color: rgb(240,240,240); 
+}
+/*ELO ranking table*/
+.elo-ranking {
+    max-height: 500px;
+    overflow-y:auto;    
+}
+
+.elo-ranking-rank {
+    width:10%;
+}
+
+.elo-ranking-flag {
+    width:7%;
+}
+
+.elo-ranking-country {
+    width:73%;
+}
+
+.elo-ranking-elo {
+    width:10%;
+}
+
+/*YUI autocomplete results*/
+.autocomplete_results {
+    background-color: rgba(255,255,255,1) !important;
+    z-index: 1000; 
+}
+
+#kamp-team {
+    text-align:center;
+    float:left;
+    
+}
+#kamp-team-comp {
+    text-align:center;
+    float:right;
+}
+
+.table-responsive {
+      max-height: 500px !important;
+}
+
+.ui-autocomplete {
+    max-height: 200px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+  }
